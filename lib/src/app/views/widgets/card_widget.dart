@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'card_skelton_widget.dart';
+
 class CardWidget extends StatelessWidget {
   const CardWidget(
       {super.key, required this.size, required this.url, this.title});
@@ -22,19 +24,11 @@ class CardWidget extends StatelessWidget {
               if (loadingProgress == null) {
                 return child;
               } else {
-                return SizedBox(
+                return Center(
+                    child: CardSkeltonWidget(
                   height: size,
                   width: size,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.redAccent,
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  ),
-                );
+                ));
               }
             },
           ),

@@ -6,6 +6,8 @@ import 'package:nasa_api/src/app/controllers/api_controller.dart';
 import 'package:nasa_api/src/app/views/pages/favorite_page.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../widgets/card_skelton_widget.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -57,11 +59,22 @@ class _HomePageState extends State<HomePage> {
         child: Consumer<ApiController>(
           builder: (context, value, _) {
             if (controller.state == ApiState.loading) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.redAccent,
-                ),
-              );
+              return Center(
+                  child: StaggeredGridView.countBuilder(
+                crossAxisCount: 2,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return CardSkeltonWidget(
+                    height: index.isEven ? 300 : 200,
+                    width: index.isEven ? 300 : 200,
+                  );
+                },
+                staggeredTileBuilder: (index) {
+                  return const StaggeredTile.fit(1);
+                },
+                mainAxisSpacing: 8.0,
+                crossAxisSpacing: 8.0,
+              ));
             } else if (controller.state == ApiState.success) {
               return StaggeredGridView.countBuilder(
                 crossAxisCount: 2,
