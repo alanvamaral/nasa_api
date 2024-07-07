@@ -32,12 +32,13 @@ class FavoritePage extends StatelessWidget {
                             shared: () {
                               controller.shareImage(favorite.url!);
                             },
-                            title: favorite.title ?? '',
+                            title: favorite.title,
                             url: favorite.url!,
                           ),
                         ));
                       },
                       child: CardFavoriteWidget(
+                        title: favorite.title!,
                         url: favorite.url!,
                         data: date,
                         removeFavorite: () {

@@ -20,6 +20,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<ApiController>();
+    final apod = controller.apodFilter[index];
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -57,15 +58,14 @@ class DetailsPage extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    if (controller.favorite
-                        .contains(controller.apodFilter[index])) {
-                      controller.removeFavorite(controller.apodFilter[index]);
+                    if (controller.favorite.contains(apod)) {
+                      controller.removeFavorite(apod);
                     } else {
-                      controller.addFavorite(controller.apodFilter[index]);
+                      controller.addFavorite(apod);
                     }
                   },
                   icon: Icon(
-                    controller.favorite.contains(controller.apodFilter[index])
+                    controller.favorite.contains(apod)
                         ? Icons.favorite
                         : Icons.favorite_border_outlined,
                     color: Colors.redAccent,

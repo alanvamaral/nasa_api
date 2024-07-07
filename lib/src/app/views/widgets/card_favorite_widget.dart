@@ -5,17 +5,17 @@ class CardFavoriteWidget extends StatelessWidget {
   const CardFavoriteWidget({
     super.key,
     required this.url,
-    this.title,
+    required this.title,
     required this.data,
     required this.removeFavorite,
     required this.sharedImage,
   });
 
   final String url;
-  final String? title;
+  final String title;
   final DateTime data;
   final void Function() removeFavorite;
-   final void Function() sharedImage;
+  final void Function() sharedImage;
   @override
   Widget build(BuildContext context) {
     final formatDate = DateFormat('dd/MM/yyyy');
@@ -38,7 +38,7 @@ class CardFavoriteWidget extends StatelessWidget {
           ),
         ),
         title: Text(
-          title ?? '',
+          title,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
