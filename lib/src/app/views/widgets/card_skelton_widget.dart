@@ -13,6 +13,7 @@ class CardSkeltonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
+      period: const Duration(milliseconds: 900),
       baseColor: Colors.black.withOpacity(0.4),
       highlightColor: Colors.black.withOpacity(0.305),
       child: Container(
