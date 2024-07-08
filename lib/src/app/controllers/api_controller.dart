@@ -39,9 +39,14 @@ class ApiController extends ChangeNotifier {
       apod.clear();
 
       String apiKey = RemoteConfigController().getString('apikey');
-      String url =
-          'https://api.nasa.gov/planetary/apod?api_key=$apiKey&count=30';
-      var response = await http.get(Uri.parse(url));
+      var response = await http.get(
+        Uri.https(
+          'api.nasa.gov',
+          '/planetary/apod',
+          {'api_key': apiKey, 'count': '30'},
+        ),
+      );
+
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         for (var eachApod in jsonData) {
